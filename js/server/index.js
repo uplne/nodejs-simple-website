@@ -1,11 +1,14 @@
-var express  = require('express'),
-    exphbs   = require('express-hbs'),
-    path     = require('path'),
-    mongoose = require('mongoose'),
-    config   = require('./config'),
-    routes   = require('./routes'),
-    helpers  = require('./helpers'),
-    appRoot  = config.paths.appRoot;
+var express    = require('express'),
+    bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
+    favicon    = require('static-favicon'),
+    errorHandler = require('errorhandler'),
+    exphbs     = require('express-hbs'),
+    path       = require('path'),
+    config     = require('./config'),
+    routes     = require('./routes'),
+    helpers    = require('./helpers'),
+    appRoot    = config.paths.appRoot;
 
 function init() {
     app = express();
@@ -14,18 +17,18 @@ function init() {
 }
 
 function setupServer() {
-    // Configure server
-    app.configure(function() {
-        app.use(express.bodyParser());
-        app.use(express.methodOverride());
+        // Configure server
+        app.use(bodyParser());
+        app.use(methodOverride());
+        app.use(favicon(config.paths.images + '/favicon.ico'));
         app.use(express.static(path.join(appRoot, 'static')));
-        app.use(express.favicon(config.paths.images + '/favicon.ico'));
         app.use('/static/images', express.static(config.paths.images));
         app.use('/static/js', express.static(config.paths.js));
         app.use('/static/css', express.static(config.paths.css));
 
-        app.use(app.router);
-        app.use(express.errorHandler({
+        // Route to PDFs and other documents
+        app.use('/static/pdf', express.static(config.paths.pdf));
+        app.use(errorHandler({
             dumpExceptions: true,
             showStack: true
         }));
