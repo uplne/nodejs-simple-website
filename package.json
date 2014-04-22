@@ -1,0 +1,21 @@
+{
+  "name": "nodejs-simple-website",
+  "version": "1.0.0",
+  "description": "Setup for creating simple nodejs static website",
+  "main": "GruntFile.js",
+  "author": {
+    "name": "Steve Vadocz",
+    "url": "http://blog.steveis.guru"
+  },
+  "private": true,
+  "engine": "node >= 0.8.8",
+  "dependencies": {
+    "express": ">= 4.0.0",
+    "body-parser": "~1.0.2",
+    "method-override": "~1.0.0",
+    "static-favicon": "~1.0.2",
+    "errorhandler": "~1.0.0",
+    "express-hbs": ">= 0.7.6",
+    "path": "~0.4.9"
+  }
+}
