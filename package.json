@@ -7,6 +7,9 @@
     "name": "Steve Vadocz",
     "url": "http://blog.steveis.guru"
   },
+  "scripts": {
+    "start": "node index.js"
+  },
   "private": true,
   "engine": "node >= 0.8.8",
   "dependencies": {
